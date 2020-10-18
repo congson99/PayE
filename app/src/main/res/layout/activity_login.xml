@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".authentication.LoginActivity">
+
+    <ImageView
+        android:id="@+id/login.image.logo"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo_paye_slogan"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login.image.logo"
+        app:layout_constraintVertical_bias="0.1">
+
+        <EditText
+            android:id="@+id/login.edit.username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/template_edit_white"
+            android:drawableStart="@drawable/ic_user_blue"
+            android:drawablePadding="10dp"
+            android:hint="@string/username"
+            android:inputType="text"
+            android:padding="10dp"
+            android:textColor="@color/Primary900"
+            android:textColorHint="@color/HintText"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/login.edit.password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/template_edit_white"
+            android:drawableStart="@drawable/ic_lock_blue"
+            android:drawablePadding="10dp"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textColor="@color/Primary900"
+            android:textColorHint="@color/HintText"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/login.text.forgetPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="@string/forget_password"
+            android:textAlignment="center"
+            android:textColor="@color/Primary900"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login.button.login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/template_button_blue"
+            android:text="@string/login"
+            android:textColor="@color/LightText"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/login.text.register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/dont_have_account"
+        android:textAlignment="center"
+        android:textColor="@color/Primary900"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

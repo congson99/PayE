@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".authentication.AuthenticateActivity">
+
+    <ImageView
+        android:id="@+id/authenticate.image.logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo_paye_nonslogan"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/authenticate.image.logo"
+        app:layout_constraintVertical_bias="0.05">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/authenticate"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/DarkText"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/HintText"
+            android:text="Check the OTP in your email"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"/>
+
+        <in.aabhasjindal.otptextview.OtpTextView
+            android:id="@+id/authenticate_view_otp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/DarkText"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            app:bar_active_color="@color/Secondary900"
+            app:bar_enabled="true"
+            app:bar_height="2.5dp"
+            app:bar_inactive_color="@color/HintText"
+            app:height="50dp"
+            app:hide_otp="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:length="6"
+            app:otp=""
+            app:otp_text_size="28dp"
+            app:width="50dp" />
+
+        <TextView
+            android:id="@+id/authenticate.text.timeBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/design_default_color_error"
+            android:textAlignment="center"
+            android:text="The OTP will expire in 5 minutes"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/register.button.resend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/resend_otp"
+            android:textSize="20sp"
+            android:textColor="@color/LightText"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/template_button_blue"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

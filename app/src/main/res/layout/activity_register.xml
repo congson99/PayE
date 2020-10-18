@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".authentication.RegisterActivity">
+
+    <ImageView
+        android:id="@+id/register.image.logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo_paye_nonslogan"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register.image.logo"
+        app:layout_constraintVertical_bias="0.05">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/DarkText"
+            android:layout_gravity="center" />
+
+        <EditText
+            android:id="@+id/register.edit.email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:textSize="22sp"
+            android:hint="@string/email"
+            android:textColorHint="@color/HintText"
+            android:textColor="@color/Primary900"
+            android:layout_gravity="center"
+            android:drawableStart="@drawable/ic_email_blue"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/template_edit_white"
+            android:padding="10dp"/>
+
+        <EditText
+            android:id="@+id/register.edit.username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textSize="22sp"
+            android:hint="@string/username"
+            android:textColorHint="@color/HintText"
+            android:textColor="@color/Primary900"
+            android:layout_gravity="center"
+            android:drawableStart="@drawable/ic_user_blue"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/template_edit_white"
+            android:padding="10dp"/>
+
+        <EditText
+            android:id="@+id/register.edit.name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textSize="22sp"
+            android:hint="@string/full_name"
+            android:textColorHint="@color/HintText"
+            android:textColor="@color/Primary900"
+            android:layout_gravity="center"
+            android:drawableStart="@drawable/ic_name_blue"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/template_edit_white"
+            android:padding="10dp"/>
+
+        <EditText
+            android:id="@+id/register.edit.password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="@string/password"
+            android:textSize="20sp"
+            android:textColorHint="@color/HintText"
+            android:textColor="@color/Primary900"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_lock_blue"
+            android:drawablePadding="10dp"
+            android:background="@drawable/template_edit_white"
+            android:padding="10dp"/>
+
+        <EditText
+            android:id="@+id/register.edit.confirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="@string/confirm_password"
+            android:textSize="20sp"
+            android:textColorHint="@color/HintText"
+            android:textColor="@color/Primary900"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_lock_blue"
+            android:drawablePadding="10dp"
+            android:background="@drawable/template_edit_white"
+            android:padding="10dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/register.button.register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/register"
+            android:textSize="20sp"
+            android:textColor="@color/LightText"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/template_button_blue"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PayE">
-        <activity android:name=".MainActivity">
+        <activity android:name=".authentication.ResetPasswordActivity"></activity>
+        <activity android:name=".authentication.ForgetPasswordActivity" />
+        <activity android:name=".authentication.AuthenticateActivity" />
+        <activity android:name=".authentication.RegisterActivity" />
+        <activity android:name=".authentication.LoginActivity" />
+        <activity android:name=".authentication.LoadActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
