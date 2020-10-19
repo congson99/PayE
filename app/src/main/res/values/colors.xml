@@ -25,6 +25,8 @@
 
     <color name="LightText">#FFFFFF</color>
     <color name="DarkText">#000000</color>
+    <color name="TrueText">#1B5E20</color>
+    <color name="FalseText">#B00020</color>
     <color name="HintText">#818181</color>
 
     <color name="black">#FF000000</color>

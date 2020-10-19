@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "549467318790",
+    "firebase_url": "https://paye-socialpayment.firebaseio.com",
+    "project_id": "paye-socialpayment",
+    "storage_bucket": "paye-socialpayment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549467318790:android:538f904203df5cdbacf187",
+        "android_client_info": {
+          "package_name": "com.example.paye"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "549467318790-hgnp8cdnpt3nhmp3c2p0p6o52guchl7p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.paye",
+            "certificate_hash": "d3a15c25344f178b45ad8de3159c0a3d8922f882"
+          }
+        },
+        {
+          "client_id": "549467318790-7a5cgd78lu6ghq05t3qevcrr9s8622o4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqQ53W46IanowMzFt9v8hU6P1xeph3w8Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "549467318790-7a5cgd78lu6ghq05t3qevcrr9s8622o4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
