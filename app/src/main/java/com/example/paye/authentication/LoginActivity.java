@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences;
+
     //firebase
     DatabaseReference databaseReference;
 
@@ -33,6 +36,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
 
         Intent intentf = this.getIntent();
         BindingView();
@@ -85,6 +90,10 @@ public class LoginActivity extends AppCompatActivity {
                                     if (snapshot.getValue().toString().equals(password.getText().toString())){
                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                         intent.putExtra("username", username.getText().toString());
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor.putString("username", username.getText().toString());
+                                        editor.putString("password", password.getText().toString());
+                                        editor.apply();
                                         password.setText("");
                                         startActivity(intent);
                                         finish();
