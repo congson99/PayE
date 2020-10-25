@@ -31,4 +31,5 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="HintIcon">#6B527EB5</color>
 </resources>

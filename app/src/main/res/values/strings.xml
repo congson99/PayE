@@ -14,4 +14,7 @@
     <string name="resend_otp">RESEND THE OTP</string>
     <string name="forget_password_title">Forget Password</string>
     <string name="reset_password">Reset Password</string>
+    <string name="chat">Chat</string>
+    <string name="profile">Profile</string>
+    <string name="wallet">Wallet</string>
 </resources>
