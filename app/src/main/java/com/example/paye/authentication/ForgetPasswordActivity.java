@@ -75,7 +75,6 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                             }
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 

@@ -23,7 +23,6 @@ public class LoginActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
 
-    //firebase
     DatabaseReference databaseReference;
 
     private EditText username;

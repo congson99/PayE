@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.aabhasr1:OtpView:v1.1.2@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fe7a103b70f5a99cd3e175bf5694243f/jetified-OtpView-v1.1.2/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fe7a103b70f5a99cd3e175bf5694243f/jetified-OtpView-v1.1.2/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fe7a103b70f5a99cd3e175bf5694243f/jetified-OtpView-v1.1.2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d90eeec099efd72fbf2ece73238e582f/jetified-OtpView-v1.1.2/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d90eeec099efd72fbf2ece73238e582f/jetified-OtpView-v1.1.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d90eeec099efd72fbf2ece73238e582f/jetified-OtpView-v1.1.2/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

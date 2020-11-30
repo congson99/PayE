@@ -6,28 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".main.MainActivity">
 
+    <FrameLayout
+        android:id="@+id/main.frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/testmain"
+        app:layout_constraintTop_toTopOf="parent">
+    </FrameLayout>
+
     <TextView
         android:id="@+id/testmain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
         android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/buttonmain"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonmain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/main.bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/testmain" />
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav"
+        android:id="@+id/main.bottomNavigation"
         app:itemTextAppearanceActive="@style/BottomNavigation.ActiveItemTextAppearance"
         app:itemTextAppearanceInactive="@style/BottomNavigation.ActiveItemTextAppearance"
         android:layout_width="match_parent"
