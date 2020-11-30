@@ -12,4 +12,12 @@
         android:id="@+id/nav_wallet"
         android:title="@string/wallet"
         android:icon="@drawable/ic_wallet"/>
+    <item
+        android:id="@+id/nav_wallet2"
+        android:title="@string/wallet"
+        android:icon="@drawable/ic_wallet"/>
+    <item
+        android:id="@+id/nav_wallet3"
+        android:title="@string/wallet"
+        android:icon="@drawable/ic_wallet"/>
 </menu>
