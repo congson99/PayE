@@ -6,44 +6,115 @@
     android:layout_height="match_parent"
     tools:context=".main.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/main.frameLayout"
+    <LinearLayout
+        android:id="@+id/main.LinearLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/testmain"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/main.border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-    </FrameLayout>
 
-    <TextView
-        android:id="@+id/testmain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/buttonmain"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <fragment
+            android:id="@+id/main.ChatFragment"
+            android:name="com.example.paye.fragment.ChatFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:layout="@layout/fragment_chat" />
 
-    <Button
-        android:id="@+id/buttonmain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/main.bottomNavigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.528"
-        app:layout_constraintStart_toStartOf="parent" />
+        <fragment
+            android:id="@+id/main.ProfileFragment"
+            android:name="com.example.paye.fragment.ProfileFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:layout="@layout/fragment_profile" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/main.bottomNavigation"
-        app:itemTextAppearanceActive="@style/BottomNavigation.ActiveItemTextAppearance"
-        app:itemTextAppearanceInactive="@style/BottomNavigation.ActiveItemTextAppearance"
+        <fragment
+            android:id="@+id/main.ScanFragment"
+            android:name="com.example.paye.fragment.ScanFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:layout="@layout/fragment_scan" />
+
+        <fragment
+            android:id="@+id/main.WalletFragment"
+            android:name="com.example.paye.fragment.WalletFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:layout="@layout/fragment_wallet" />
+
+        <fragment
+            android:id="@+id/main.SettingFragment"
+            android:name="com.example.paye.fragment.SettingFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:layout="@layout/fragment_setting" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/main.border"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/bottom_nav"
-        android:background="@drawable/templete_bottom_nav"
-        app:elevation="19dp"
-        app:itemIconTint="@color/bottom_nav_item"
-        app:itemTextColor="@color/bottom_nav_item"
+        android:layout_height="0.1dp"
+        android:background="@color/HintText"
+        app:layout_constraintBottom_toTopOf="@+id/main.bottomNavigation" />
+
+    <LinearLayout
+        android:id="@+id/main.bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintCircleRadius="3dp"
-        app:menu="@menu/bottom_nav" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/bottomNavigation.Chat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:src="@drawable/ic_chat_show" />
+
+        <ImageButton
+            android:id="@+id/bottomNavigation.Profile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:src="@drawable/ic_profile_hint" />
+
+        <ImageButton
+            android:id="@+id/bottomNavigation.Scan"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:src="@drawable/ic_scan_hint" />
+
+        <ImageButton
+            android:id="@+id/bottomNavigation.Wallet"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:src="@drawable/ic_wallet_hint" />
+
+        <ImageButton
+            android:id="@+id/bottomNavigation.Setting"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:src="@drawable/ic_setting_hint" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
