@@ -118,6 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
                                                     intent.putExtra("username", username.getText().toString());
                                                     intent.putExtra("name", fullName.getText().toString());
                                                     intent.putExtra("password", password.getText().toString());
+                                                    intent.putExtra("avatar", "none");
                                                     password.setText("");
                                                     confirmPassword.setText("");
                                                     startActivity(intent);

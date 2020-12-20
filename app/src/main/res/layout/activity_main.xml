@@ -33,6 +33,22 @@
             tools:layout="@layout/fragment_profile" />
 
         <fragment
+            android:id="@+id/main.SearchFragment"
+            android:name="com.example.paye.fragment.SearchFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:layout="@layout/fragment_search" />
+
+        <fragment
+            android:id="@+id/main.SearchProfileFragment"
+            android:name="com.example.paye.fragment.SearchProfileFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:layout="@layout/fragment_search_profile" />
+
+        <fragment
             android:id="@+id/main.ScanFragment"
             android:name="com.example.paye.fragment.ScanFragment"
             android:layout_width="match_parent"
@@ -98,7 +114,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/white"
-            android:src="@drawable/ic_scan_hint" />
+            android:src="@drawable/ic_scan_hint"
+            android:contentDescription="TODO" />
 
         <ImageButton
             android:id="@+id/bottomNavigation.Wallet"

@@ -4,26 +4,487 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#3F51B5">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profile"
-        android:textSize="60sp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile.profileView"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/profile.avatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_avatar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/profile.name"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/quicksand_bold"
+            android:paddingStart="2dp"
+            android:text="Profile"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintStart_toEndOf="@+id/profile.avatar"
+            app:layout_constraintTop_toTopOf="@+id/profile.avatar" />
+
+        <ImageButton
+            android:id="@+id/profile.button.search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:background="@color/white"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="@+id/profile.name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/profile.name" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/profile.username"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/template_username"
+            android:text="Loading Username..."
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/profile.showQR"
+            app:layout_constraintStart_toEndOf="@+id/profile.avatar"
+            app:layout_constraintTop_toBottomOf="@+id/profile.name" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/profile.showQR"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/template_showqr"
+            android:text="Show QR"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile.name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/HintText"
+        app:layout_constraintTop_toBottomOf="@+id/profile.profileView" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/view">
 
-    <TextView
-        android:id="@+id/testmain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
+            <EditText
+                android:id="@+id/profile.description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_bold"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@drawable/template_edit_white"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/profile.changeDescription"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/template_button_change"
+                android:text="Confirm change"
+                android:textColor="@color/Primary900" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/HintText" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Photo 1: Change your photo or rewrite photo description and then press button to confirm."
+                android:layout_margin="10dp"
+                android:textSize="18dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <ImageView
+                    android:id="@+id/profile.photo1"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/ic_photo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/profile.button.camera1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/template_camera"
+                    android:drawableStart="@drawable/ic_camera_white"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="  Camera "
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profile.photo1"
+                    app:layout_constraintTop_toTopOf="@+id/profile.photo1" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/profile.button.photo1"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/template_photo"
+                    android:drawableStart="@drawable/ic_photo_white"
+                    android:paddingStart="10dp"
+                    android:text="Photo"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/profile.button.camera1"
+                    app:layout_constraintStart_toStartOf="@+id/profile.button.camera1"
+                    app:layout_constraintTop_toBottomOf="@+id/profile.button.camera1" />
+
+                <EditText
+                    android:id="@+id/profile.photoDescription1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/template_edit_white"
+                    android:hint="Type your Photo Description here"
+                    android:padding="10dp"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profile.photo1"
+                    app:layout_constraintTop_toBottomOf="@+id/profile.button.photo1" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/profile.changePhoto1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/template_button_change"
+                    android:text="Comfirm"
+                    android:textColor="@color/Primary900"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profile.photo1"
+                    app:layout_constraintTop_toBottomOf="@+id/profile.photoDescription1" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/HintText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Photo 2: Change your photo or rewrite photo description and then press button to confirm."
+                android:layout_margin="10dp"
+                android:textSize="18dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <ImageView
+                    android:id="@+id/profile.photo2"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/ic_photo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/profile.button.camera2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/template_camera"
+                    android:drawableStart="@drawable/ic_camera_white"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="  Camera "
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profile.photo2"
+                    app:layout_constraintTop_toTopOf="@+id/profile.photo2" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/profile.button.photo2"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/template_photo"
+                    android:drawableStart="@drawable/ic_photo_white"
+                    android:paddingStart="10dp"
+                    android:text="Photo"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/profile.button.camera2"
+                    app:layout_constraintStart_toStartOf="@+id/profile.button.camera2"
+                    app:layout_constraintTop_toBottomOf="@+id/profile.button.camera2" />
+
+                <EditText
+                    android:id="@+id/profile.photoDescription2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/template_edit_white"
+                    android:hint="Type your Photo Description here"
+                    android:padding="10dp"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profile.photo2"
+                    app:layout_constraintTop_toBottomOf="@+id/profile.button.photo2" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/profile.changePhoto2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/template_button_change"
+                    android:text="Comfirm"
+                    android:textColor="@color/Primary900"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profile.photo2"
+                    app:layout_constraintTop_toBottomOf="@+id/profile.photoDescription2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/HintText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Photo 3: Change your photo or rewrite photo description and then press button to confirm."
+                android:layout_margin="10dp"
+                android:textSize="18dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <ImageView
+                    android:id="@+id/profile.photo3"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/ic_photo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/profile.button.camera3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/template_camera"
+                    android:drawableStart="@drawable/ic_camera_white"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="  Camera "
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profile.photo3"
+                    app:layout_constraintTop_toTopOf="@+id/profile.photo3" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/profile.button.photo3"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/template_photo"
+                    android:drawableStart="@drawable/ic_photo_white"
+                    android:paddingStart="10dp"
+                    android:text="Photo"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/profile.button.camera3"
+                    app:layout_constraintStart_toStartOf="@+id/profile.button.camera3"
+                    app:layout_constraintTop_toBottomOf="@+id/profile.button.camera3" />
+
+                <EditText
+                    android:id="@+id/profile.photoDescription3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/template_edit_white"
+                    android:hint="Type your Photo Description here"
+                    android:padding="10dp"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profile.photo3"
+                    app:layout_constraintTop_toBottomOf="@+id/profile.button.photo3" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/profile.changePhoto3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/template_button_change"
+                    android:text="Comfirm"
+                    android:textColor="@color/Primary900"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profile.photo3"
+                    app:layout_constraintTop_toBottomOf="@+id/profile.photoDescription3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/HintText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Photo 4: Change your photo or rewrite photo description and then press button to confirm."
+                android:layout_margin="10dp"
+                android:textSize="18dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <ImageView
+                    android:id="@+id/profile.photo4"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/ic_photo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/profile.button.camera4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/template_camera"
+                    android:drawableStart="@drawable/ic_camera_white"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="  Camera "
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profile.photo4"
+                    app:layout_constraintTop_toTopOf="@+id/profile.photo4" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/profile.button.photo4"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/template_photo"
+                    android:drawableStart="@drawable/ic_photo_white"
+                    android:paddingStart="10dp"
+                    android:text="Photo"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/profile.button.camera4"
+                    app:layout_constraintStart_toStartOf="@+id/profile.button.camera4"
+                    app:layout_constraintTop_toBottomOf="@+id/profile.button.camera4" />
+
+                <EditText
+                    android:id="@+id/profile.photoDescription4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/template_edit_white"
+                    android:hint="Type your Photo Description here"
+                    android:padding="10dp"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profile.photo4"
+                    app:layout_constraintTop_toBottomOf="@+id/profile.button.photo4" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/profile.changePhoto4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/template_button_change"
+                    android:text="Comfirm"
+                    android:textColor="@color/Primary900"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profile.photo4"
+                    app:layout_constraintTop_toBottomOf="@+id/profile.photoDescription4" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/HintText" />
+
+        </LinearLayout>
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.paye.R;
 import com.example.paye.main.MainActivity;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

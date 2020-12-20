@@ -23,6 +23,8 @@
     <color name="Secondary800">#4527A0</color>
     <color name="Secondary900">#311B92</color>
 
+    <color name="Third600">#43A047</color>
+
     <color name="LightText">#FFFFFF</color>
     <color name="DarkText">#000000</color>
     <color name="TrueText">#1B5E20</color>
