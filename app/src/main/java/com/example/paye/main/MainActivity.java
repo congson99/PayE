@@ -329,9 +329,9 @@ public class MainActivity extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.getValue() != null){
                                 LoadFragment(SearchProfileFragment);
-                                LoadProfile(searchSearch.getText().toString());
+                                LoadProfile(scanResult.getText().toString());
                             } else {
-                                searchSearch.setError("This username does not exist!");
+                                scanResult.setError("This username does not exist!");
                             }
                         }
 
