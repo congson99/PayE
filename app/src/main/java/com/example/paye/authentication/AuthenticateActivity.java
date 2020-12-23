@@ -54,6 +54,16 @@ public class AuthenticateActivity extends AppCompatActivity {
                         databaseReference.child("email").setValue(email);
                         databaseReference.child("name").setValue(name);
                         databaseReference.child("password").setValue(password);
+                        databaseReference.child("avatar").setValue("none");
+                        databaseReference.child("description").setValue("");
+                        databaseReference.child("description1").setValue("");
+                        databaseReference.child("description2").setValue("");
+                        databaseReference.child("description3").setValue("");
+                        databaseReference.child("description4").setValue("");
+                        databaseReference.child("photo1").setValue("none");
+                        databaseReference.child("photo2").setValue("none");
+                        databaseReference.child("photo3").setValue("none");
+                        databaseReference.child("photo4").setValue("none");
                         Intent intent = new Intent(AuthenticateActivity.this, LoginActivity.class);
                         intent.putExtra("username", username);
                         intent.putExtra("password", password);
