@@ -54,6 +54,10 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
+    //temp
+    public static TextView scanResult;
+    Button go;
+
     //SharedPreferences
     SharedPreferences sharedPreferences;
 
@@ -101,6 +105,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void BindingView(){
+        //temp
+        scanResult = (TextView) findViewById(R.id.scan_result);
+        go = (Button) findViewById(R.id.scan_find);
+
         //profile
         profileUser = (Button) findViewById(R.id.profile_username);
         profileQR = (Button) findViewById(R.id.profile_showQR);
@@ -310,6 +318,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void Click(Intent intentf){
+        //temp
+        go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!scanResult.getText().toString().equals("")){
+                    databaseReferenceSearch = FirebaseDatabase.getInstance().getReference("DATA").child("user").child(searchSearch.getText().toString());
+                    databaseReferenceSearch.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.getValue() != null){
+                                LoadFragment(SearchProfileFragment);
+                                LoadProfile(searchSearch.getText().toString());
+                            } else {
+                                searchSearch.setError("This username does not exist!");
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            }
+        });
+
         //temp logout
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -356,6 +390,8 @@ public class MainActivity extends AppCompatActivity {
                 BNWallet.setImageResource(R.drawable.ic_wallet_hint);
                 BNSetting.setImageResource(R.drawable.ic_setting_hint);
                 LoadFragment(ScanFragment);
+
+                startActivity(new Intent(getApplicationContext(), ScanActivity.class));
             }
         });
         BNWallet.setOnClickListener(new View.OnClickListener() {

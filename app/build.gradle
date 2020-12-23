@@ -46,4 +46,6 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc03"
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.google.zxing:core:3.2.1'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    implementation 'me.dm7.barcodescanner:zxing:1.9'
 }
