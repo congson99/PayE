@@ -64,6 +64,7 @@ public class AuthenticateActivity extends AppCompatActivity {
                         databaseReference.child("photo2").setValue("none");
                         databaseReference.child("photo3").setValue("none");
                         databaseReference.child("photo4").setValue("none");
+                        databaseReference.child("balance").setValue("none");
                         Intent intent = new Intent(AuthenticateActivity.this, LoginActivity.class);
                         intent.putExtra("username", username);
                         intent.putExtra("password", password);

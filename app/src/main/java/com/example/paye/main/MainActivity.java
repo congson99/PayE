@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     //temp
     public static TextView scanResult;
     Button go;
+    public static int balance;
 
     //SharedPreferences
     SharedPreferences sharedPreferences;
@@ -74,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
     TextView profileName,
             ProfileName2, profileDescription2,
             profileDescriptionPhoto21, profileDescriptionPhoto22,
-            profileDescriptionPhoto23, profileDescriptionPhoto24;
+            profileDescriptionPhoto23, profileDescriptionPhoto24,
+            walletName, walletBalance;
     EditText profileDescription,
             profileDescriptionPhoto1, profileDescriptionPhoto2,
             profileDescriptionPhoto3, profileDescriptionPhoto4,
@@ -83,11 +85,13 @@ public class MainActivity extends AppCompatActivity {
             profileButtonQR, profileButtonConfirm,
             profileButtonCamera1, profileButtonCamera2, profileButtonCamera3, profileButtonCamera4,
             profileButtonPhoto1, profileButtonPhoto2, profileButtonPhoto3, profileButtonPhoto4,
-            profileButtonConfirm1, profileButtonConfirm2, profileButtonConfirm3, profileButtonConfirm4;
+            profileButtonConfirm1, profileButtonConfirm2, profileButtonConfirm3, profileButtonConfirm4,
+            walletUsername, walletRecharge, walletWithdrawal;
     ImageButton BNChat, BNProfile, BNScan, BNWallet, BNSetting,
             profileSearch, searchButtonSearch;
     ImageView profileAvatar, profilePhoto1, profilePhoto2, profilePhoto3, profilePhoto4,
-            profileAvatar2, profilePhoto21, profilePhoto22, profilePhoto23, profilePhoto24;
+            profileAvatar2, profilePhoto21, profilePhoto22, profilePhoto23, profilePhoto24,
+            walletAvatar;
     FragmentManager fragmentManager;
     Fragment ChatFragment, ProfileFragment, SearchFragment,SearchProfileFragment , ScanFragment, WalletFragment, SettingFragment;
 
@@ -156,6 +160,14 @@ public class MainActivity extends AppCompatActivity {
         profileDescriptionPhoto23 = (TextView) findViewById(R.id.profile2_photoDescription3);
         profileDescriptionPhoto24 = (TextView) findViewById(R.id.profile2_photoDescription4);
         profile2QR = (Button) findViewById(R.id.profile2_showQR);
+
+        //Wallet
+        walletAvatar = (ImageView) findViewById(R.id.wallet_avatar);
+        walletName = (TextView) findViewById(R.id.wallet_name);
+        walletUsername = (Button) findViewById(R.id.wallet_username);
+        walletBalance = (TextView) findViewById(R.id.wallet_accountBalance);
+        walletRecharge = (Button) findViewById(R.id.wallet_recharge);
+        walletWithdrawal = (Button) findViewById(R.id.wallet_withdrawal);
 
         //temp
         button = (Button) findViewById(R.id.buttonmain);
@@ -262,6 +274,7 @@ public class MainActivity extends AppCompatActivity {
     private void LoadData(Intent intentf){
         //username
         profileUser.setText(intentf.getStringExtra("username"));
+        walletUsername.setText(intentf.getStringExtra("username"));
 
         databaseReference = FirebaseDatabase.getInstance().getReference("DATA").child("user").child(intentf.getStringExtra("username"));
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -269,12 +282,14 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Name
                 profileName.setText(snapshot.child("name").getValue().toString());
+                walletName.setText(snapshot.child("name").getValue().toString());
                 //Avatar
                 if(!snapshot.child("avatar").getValue().toString().equals("none")){
                     byte[] tempGet = Base64.decode(snapshot.child("avatar").getValue().toString(), Base64.DEFAULT);
                     Bitmap tempBitmap = BitmapFactory.decodeByteArray(tempGet, 0, tempGet.length);
                     Bitmap circularBitmap = getRoundedCornerBitmap(tempBitmap, 500);
                     profileAvatar.setImageBitmap(circularBitmap);
+                    walletAvatar.setImageBitmap(circularBitmap);
                 }
                 //description
                 if(snapshot.child("description").getValue().toString().equals("none")){
@@ -302,6 +317,13 @@ public class MainActivity extends AppCompatActivity {
                     byte[] tempGet = Base64.decode(snapshot.child("photo4").getValue().toString(), Base64.DEFAULT);
                     Bitmap tempBitmap = BitmapFactory.decodeByteArray(tempGet, 0, tempGet.length);
                     profilePhoto4.setImageBitmap(tempBitmap);
+                }
+                if(snapshot.child("balance").getValue().toString().equals("none")){
+                    walletBalance.setText("   0 VND   ");
+                    balance = 0;
+                } else {
+                    walletBalance.setText("   " + snapshot.child("balance").getValue().toString() + " VND   ");
+                    balance = Integer.parseInt(snapshot.child("balance").getValue().toString());
                 }
                 //Description
                 profileDescriptionPhoto1.setText(snapshot.child("description1").getValue().toString());
@@ -341,6 +363,27 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 }
+            }
+        });
+
+        //wallet
+        walletRecharge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                balance += 1000000;
+                databaseReference.child("balance").setValue(balance);
+            }
+        });
+
+        walletWithdrawal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                balance -= 1000000;
+                if (balance < 0){
+                    balance = 0;
+                    Toast.makeText(MainActivity.this, "Your account has run out of money", Toast.LENGTH_LONG).show();
+                }
+                databaseReference.child("balance").setValue(balance);
             }
         });
 

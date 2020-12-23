@@ -4,17 +4,120 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FF9800">
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/wallet.profileView"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/wallet.avatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_avatar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/wallet.name"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/quicksand_bold"
+            android:paddingStart="2dp"
+            android:text="Profile"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintStart_toEndOf="@+id/wallet.avatar"
+            app:layout_constraintTop_toTopOf="@+id/wallet.avatar" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/wallet.username"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/template_edit_white"
+            android:text="Loading Username..."
+            android:padding="10dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/wallet.avatar"
+            app:layout_constraintTop_toBottomOf="@+id/wallet.name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/HintText"
+        app:layout_constraintTop_toBottomOf="@+id/wallet.profileView" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/wallet.description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Wallet"
-        android:textSize="60sp"
+        android:layout_margin="10dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="Account Balance PayE"
+        android:fontFamily="@font/quicksand_bold"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/wallet.profileView" />
+
+    <TextView
+        android:id="@+id/wallet.accountBalance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="8dp"
+        android:text="   Loanding...   "
+        android:background="@drawable/template_edit_white"
+        android:fontFamily="@font/quicksand_bold"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/wallet.withdrawal"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="@+id/wallet.recharge"
+        app:layout_constraintTop_toBottomOf="@+id/wallet.description" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/wallet.recharge"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/template_transfers"
+        android:text="Recharge"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/wallet.withdrawal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wallet.accountBalance" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/wallet.withdrawal"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/template_addfriend"
+        android:text="Withdrawal"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/wallet.recharge"
+        app:layout_constraintTop_toTopOf="@+id/wallet.recharge" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
