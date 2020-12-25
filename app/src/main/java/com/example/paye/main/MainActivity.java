@@ -821,7 +821,7 @@ public class MainActivity extends AppCompatActivity {
         if (amount != 0){
             if (amount < balance) {
                 databaseReferenceChung.child(myUsername).child("balance").setValue(balance - amount);
-                databaseReferenceSearch.child(userUsername).child("balance").setValue(userBalance + amount);
+                databaseReferenceChung.child(userUsername).child("balance").setValue(userBalance + amount);
                 balance -= amount;
                 userBalance += amount;
             } else Toast.makeText(MainActivity.this, "Your account has run out of money", Toast.LENGTH_LONG).show();
