@@ -54,10 +54,13 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    //temp
+    //variable
     public static TextView scanResult;
+    public static int balance, userBalance, amount = 0;
+    public static String myUsername, userUsername = "none";
+
+    //temp
     Button go;
-    public static int balance;
 
     //SharedPreferences
     SharedPreferences sharedPreferences;
@@ -65,47 +68,81 @@ public class MainActivity extends AppCompatActivity {
     //Firebase
     DatabaseReference databaseReference;
     DatabaseReference databaseReferenceSearch;
+    DatabaseReference databaseReferenceChung;
     DatabaseReference databaseReferenceUser;
 
     //Camera Intent
     int REQUEST_CODE1 = 1, REQUEST_CODE2 = 2, REQUEST_CODE3 = 3, REQUEST_CODE4 = 4;
     Integer PHOTO1 = 21, PHOTO2 = 22, PHOTO3 = 23, PHOTO4 = 24;
 
+    //Bottom navigation
+    ImageButton BNChat, BNProfile, BNScan, BNWallet, BNSetting;
+
+    FragmentManager fragmentManager;
+    Fragment ChatFragment, ProfileFragment, SearchFragment,SearchProfileFragment , ScanFragment, WalletFragment, SettingFragment;
+
+
     //Items
-    TextView profileName,
-            ProfileName2, profileDescription2,
-            profileDescriptionPhoto21, profileDescriptionPhoto22,
-            profileDescriptionPhoto23, profileDescriptionPhoto24,
-            walletName, walletBalance;
+    //profile fragment
+    TextView profileName;
     EditText profileDescription,
             profileDescriptionPhoto1, profileDescriptionPhoto2,
-            profileDescriptionPhoto3, profileDescriptionPhoto4,
-            searchSearch;
-    Button profileUser, profileUser2, profileQR, profile2QR, button,
+            profileDescriptionPhoto3, profileDescriptionPhoto4;
+    Button profileUser,
             profileButtonQR, profileButtonConfirm,
             profileButtonCamera1, profileButtonCamera2, profileButtonCamera3, profileButtonCamera4,
             profileButtonPhoto1, profileButtonPhoto2, profileButtonPhoto3, profileButtonPhoto4,
-            profileButtonConfirm1, profileButtonConfirm2, profileButtonConfirm3, profileButtonConfirm4,
-            walletUsername, walletRecharge, walletWithdrawal;
-    ImageButton BNChat, BNProfile, BNScan, BNWallet, BNSetting,
-            profileSearch, searchButtonSearch;
-    ImageView profileAvatar, profilePhoto1, profilePhoto2, profilePhoto3, profilePhoto4,
-            profileAvatar2, profilePhoto21, profilePhoto22, profilePhoto23, profilePhoto24,
-            walletAvatar;
-    FragmentManager fragmentManager;
-    Fragment ChatFragment, ProfileFragment, SearchFragment,SearchProfileFragment , ScanFragment, WalletFragment, SettingFragment;
+            profileButtonConfirm1, profileButtonConfirm2, profileButtonConfirm3, profileButtonConfirm4;
+    ImageView profileAvatar, profilePhoto1, profilePhoto2, profilePhoto3, profilePhoto4;
+    ImageButton profileSearch;
+
+    //profile user
+    TextView ProfileName2, profileDescription2,
+            profileDescriptionPhoto21, profileDescriptionPhoto22,
+            profileDescriptionPhoto23, profileDescriptionPhoto24;
+    Button profileUser2, profile2QR, profileTransfers;
+    ImageView profileAvatar2, profilePhoto21, profilePhoto22, profilePhoto23, profilePhoto24;
+
+    //search
+    EditText searchSearch;
+    ImageButton searchButtonSearch;
+
+    //wallet
+    TextView walletName, walletBalance;
+    Button walletUsername, walletRecharge, walletWithdrawal;
+    ImageView walletAvatar;
+
+    //Setting
+    Button logout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //save account
         sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+
+        //binding
         BindingView();
+
+        //fragment
         LoadFragment(ChatFragment);
+
+        //intent
         Intent intentf = getIntent();
+
+        //Load data
         LoadData(intentf);
-        Click(intentf);
+
+        //Set click
+        BottomNavigationClick(intentf);
+        ProfileClick(intentf);
+        SearchClick(intentf);
+        UserClick(intentf);
+        WalletClick(intentf);
+        TempClick(intentf);
     }
 
     protected void BindingView(){
@@ -113,9 +150,25 @@ public class MainActivity extends AppCompatActivity {
         scanResult = (TextView) findViewById(R.id.scan_result);
         go = (Button) findViewById(R.id.scan_find);
 
+        //Bottom Navigation
+        BNChat = (ImageButton) findViewById(R.id.bottomNavigation_Chat);
+        BNProfile = (ImageButton) findViewById(R.id.bottomNavigation_Profile);
+        BNScan = (ImageButton) findViewById(R.id.bottomNavigation_Scan);
+        BNWallet = (ImageButton) findViewById(R.id.bottomNavigation_Wallet);
+        BNSetting = (ImageButton) findViewById(R.id.bottomNavigation_Setting);
+
+        //Fragment
+        fragmentManager = getSupportFragmentManager();
+        ChatFragment = fragmentManager.findFragmentById(R.id.main_ChatFragment);
+        ProfileFragment = fragmentManager.findFragmentById(R.id.main_ProfileFragment);
+        ScanFragment = fragmentManager.findFragmentById(R.id.main_ScanFragment);
+        SearchFragment = fragmentManager.findFragmentById(R.id.main_SearchFragment);
+        SearchProfileFragment = fragmentManager.findFragmentById(R.id.main_SearchProfileFragment);
+        WalletFragment = fragmentManager.findFragmentById(R.id.main_WalletFragment);
+        SettingFragment = fragmentManager.findFragmentById(R.id.main_SettingFragment);
+
         //profile
         profileUser = (Button) findViewById(R.id.profile_username);
-        profileQR = (Button) findViewById(R.id.profile_showQR);
         profileName = (TextView) findViewById(R.id.profile_name);
         profileAvatar = (ImageView) findViewById(R.id.profile_avatar);
         profileDescription = (EditText) findViewById(R.id.profile_description);
@@ -143,9 +196,11 @@ public class MainActivity extends AppCompatActivity {
         profileButtonConfirm2 = (Button) findViewById(R.id.profile_changePhoto2);
         profileButtonConfirm3 = (Button) findViewById(R.id.profile_changePhoto3);
         profileButtonConfirm4 = (Button) findViewById(R.id.profile_changePhoto4);
+
         //Search
         searchSearch = (EditText) findViewById(R.id.search_search_searchBar);
         searchButtonSearch = (ImageButton) findViewById(R.id.search_button_search);
+
         //Profile 2
         profileUser2 = (Button) findViewById(R.id.profile2_username);
         ProfileName2 = (TextView) findViewById(R.id.profile2_name);
@@ -160,6 +215,7 @@ public class MainActivity extends AppCompatActivity {
         profileDescriptionPhoto23 = (TextView) findViewById(R.id.profile2_photoDescription3);
         profileDescriptionPhoto24 = (TextView) findViewById(R.id.profile2_photoDescription4);
         profile2QR = (Button) findViewById(R.id.profile2_showQR);
+        profileTransfers = (Button) findViewById(R.id.profile2_transfers);
 
         //Wallet
         walletAvatar = (ImageView) findViewById(R.id.wallet_avatar);
@@ -169,25 +225,8 @@ public class MainActivity extends AppCompatActivity {
         walletRecharge = (Button) findViewById(R.id.wallet_recharge);
         walletWithdrawal = (Button) findViewById(R.id.wallet_withdrawal);
 
-        //temp
-        button = (Button) findViewById(R.id.buttonmain);
-
-        //Bottom Navigation
-        BNChat = (ImageButton) findViewById(R.id.bottomNavigation_Chat);
-        BNProfile = (ImageButton) findViewById(R.id.bottomNavigation_Profile);
-        BNScan = (ImageButton) findViewById(R.id.bottomNavigation_Scan);
-        BNWallet = (ImageButton) findViewById(R.id.bottomNavigation_Wallet);
-        BNSetting = (ImageButton) findViewById(R.id.bottomNavigation_Setting);
-
-        //Fragment
-        fragmentManager = getSupportFragmentManager();
-        ChatFragment = fragmentManager.findFragmentById(R.id.main_ChatFragment);
-        ProfileFragment = fragmentManager.findFragmentById(R.id.main_ProfileFragment);
-        ScanFragment = fragmentManager.findFragmentById(R.id.main_ScanFragment);
-        SearchFragment = fragmentManager.findFragmentById(R.id.main_SearchFragment);
-        SearchProfileFragment = fragmentManager.findFragmentById(R.id.main_SearchProfileFragment);
-        WalletFragment = fragmentManager.findFragmentById(R.id.main_WalletFragment);
-        SettingFragment = fragmentManager.findFragmentById(R.id.main_SettingFragment);
+        //Setting
+        logout = (Button) findViewById(R.id.setting_logout);
     }
 
     private void LoadFragment(Fragment fragment) {
@@ -272,11 +311,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void LoadData(Intent intentf){
-        //username
-        profileUser.setText(intentf.getStringExtra("username"));
-        walletUsername.setText(intentf.getStringExtra("username"));
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("DATA").child("user").child(intentf.getStringExtra("username"));
+        myUsername = intentf.getStringExtra("username");
+
+        //username
+        profileUser.setText(myUsername);
+        walletUsername.setText(myUsername);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("DATA").child("user").child(myUsername);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -339,69 +381,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    protected void Click(Intent intentf){
-        //temp
-        go.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!scanResult.getText().toString().equals("")){
-                    databaseReferenceSearch = FirebaseDatabase.getInstance().getReference("DATA").child("user").child(searchSearch.getText().toString());
-                    databaseReferenceSearch.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.getValue() != null){
-                                LoadFragment(SearchProfileFragment);
-                                LoadProfile(scanResult.getText().toString());
-                            } else {
-                                scanResult.setError("This username does not exist!");
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                }
-            }
-        });
-
-        //wallet
-        walletRecharge.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                balance += 1000000;
-                databaseReference.child("balance").setValue(balance);
-            }
-        });
-
-        walletWithdrawal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                balance -= 1000000;
-                if (balance < 0){
-                    balance = 0;
-                    Toast.makeText(MainActivity.this, "Your account has run out of money", Toast.LENGTH_LONG).show();
-                }
-                databaseReference.child("balance").setValue(balance);
-            }
-        });
-
-        //temp logout
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.remove("username");
-                editor.remove("password");
-                editor.apply();
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        //bottom navigation
+    protected void BottomNavigationClick(Intent intentf){
         BNChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -459,15 +439,16 @@ public class MainActivity extends AppCompatActivity {
                 LoadFragment(SettingFragment);
             }
         });
+    }
 
-        //Profile
+    protected void ProfileClick(Intent intentf){
         profileButtonQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 QRCodeWriter qrCodeWriter = new QRCodeWriter();
 
                 try {
-                    BitMatrix bitMatrix = qrCodeWriter.encode(intentf.getStringExtra("username"), BarcodeFormat.QR_CODE, 200, 200);
+                    BitMatrix bitMatrix = qrCodeWriter.encode(myUsername, BarcodeFormat.QR_CODE, 200, 200);
                     Bitmap bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.RGB_565);
 
                     for (int x = 0; x < 200; x++){
@@ -598,19 +579,21 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Change successful!", Toast.LENGTH_LONG).show();
             }
         });
+    }
 
-        //Search
+    protected void SearchClick(Intent intentf){
         searchButtonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!searchSearch.getText().toString().equals("")){
-                    databaseReferenceSearch = FirebaseDatabase.getInstance().getReference("DATA").child("user").child(searchSearch.getText().toString());
+                    userUsername = searchSearch.getText().toString();
+                    databaseReferenceSearch = FirebaseDatabase.getInstance().getReference("DATA").child("user").child(userUsername);
                     databaseReferenceSearch.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.getValue() != null){
                                 LoadFragment(SearchProfileFragment);
-                                LoadProfile(searchSearch.getText().toString());
+                                LoadProfile(userUsername);
                             } else {
                                 searchSearch.setError("This username does not exist!");
                             }
@@ -624,14 +607,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    protected void UserClick(Intent intentf){
         profile2QR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 QRCodeWriter qrCodeWriter = new QRCodeWriter();
 
                 try {
-                    BitMatrix bitMatrix = qrCodeWriter.encode(profileUser2.getText().toString(), BarcodeFormat.QR_CODE, 200, 200);
+                    BitMatrix bitMatrix = qrCodeWriter.encode(userUsername, BarcodeFormat.QR_CODE, 200, 200);
                     Bitmap bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.RGB_565);
 
                     for (int x = 0; x < 200; x++){
@@ -643,6 +628,97 @@ public class MainActivity extends AppCompatActivity {
                 } catch (WriterException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+
+        profileTransfers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!profileUser2.getText().toString().equals("")){
+                    databaseReferenceChung = FirebaseDatabase.getInstance().getReference("DATA").child("user");
+                    databaseReferenceChung.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            userBalance = Integer.parseInt(snapshot.child(userUsername).child("balance").getValue().toString());
+                            byte[] tempGet = Base64.decode(snapshot.child(userUsername).child("avatar").getValue().toString(), Base64.DEFAULT);
+                            Bitmap tempBitmap = BitmapFactory.decodeByteArray(tempGet, 0, tempGet.length);
+                            byte[] tempGet2 = Base64.decode(snapshot.child(myUsername).child("avatar").getValue().toString(), Base64.DEFAULT);
+                            Bitmap tempBitmap2 = BitmapFactory.decodeByteArray(tempGet2, 0, tempGet.length);
+                            Transfer(tempBitmap, snapshot.child(userUsername).child("name").getValue().toString(), userUsername,
+                                    tempBitmap2, snapshot.child(myUsername).child("name").getValue().toString(), myUsername);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    protected void WalletClick(Intent intentf){
+        walletRecharge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                balance += 1000000;
+                databaseReference.child("balance").setValue(balance);
+            }
+        });
+
+        walletWithdrawal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                balance -= 1000000;
+                if (balance < 0){
+                    balance = 0;
+                    Toast.makeText(MainActivity.this, "Your account has run out of money", Toast.LENGTH_LONG).show();
+                }
+                databaseReference.child("balance").setValue(balance);
+            }
+        });
+    }
+
+    protected void TempClick(Intent intentf){
+        //temp
+        go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!scanResult.getText().toString().equals("")){
+                    userUsername = scanResult.getText().toString();
+                    databaseReferenceSearch = FirebaseDatabase.getInstance().getReference("DATA").child("user").child(userUsername);
+                    databaseReferenceSearch.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.getValue() != null){
+                                LoadFragment(SearchProfileFragment);
+                                LoadProfile(userUsername);
+                            } else {
+                                scanResult.setError("This username does not exist!");
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            }
+        });
+
+        //temp logout
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove("username");
+                editor.remove("password");
+                editor.apply();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -700,13 +776,57 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    //QR code
+    //QR code dialog
     public void DialogQRcode(Bitmap bitmap){
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.template_qrcode);
         ImageView QR = (ImageView) dialog.findViewById(R.id.qrcode_qr);
         QR.setImageBitmap(bitmap);
         dialog.show();
+    }
+
+    //Transfers dialog
+    public void Transfer(Bitmap avatar, String name, String username, Bitmap avatar2, String name2, String username2){
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.template_transfers);
+        ImageView Avatar = (ImageView) dialog.findViewById(R.id.transfer_avatar);
+        ImageView Avatar2 = (ImageView) dialog.findViewById(R.id.transfer_avatar2);
+        TextView Name = (TextView) dialog.findViewById(R.id.transfer_name);
+        TextView Name2 = (TextView) dialog.findViewById(R.id.transfer_name2);
+        Button Username = (Button) dialog.findViewById(R.id.transfer_username);
+        Button Username2 = (Button) dialog.findViewById(R.id.transfer_username2);
+        EditText Amount = (EditText) dialog.findViewById(R.id.transfer_amount);
+        Button Confirm = (Button) dialog.findViewById(R.id.transfer_confirm);
+        Avatar.setImageBitmap(avatar);
+        Avatar2.setImageBitmap(avatar2);
+        Name.setText(name);
+        Name2.setText(name2);
+        Username.setText(username);
+        Username2.setText(username2);
+        dialog.show();
+        Confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!Amount.getText().toString().equals("")){
+                    amount = Integer.parseInt(Amount.getText().toString());
+                    HandleTransfer();
+                }
+                dialog.hide();
+            }
+        });
+    }
+
+    //handle Transfer
+    public void HandleTransfer(){
+        if (amount != 0){
+            if (amount < balance) {
+                databaseReferenceChung.child(myUsername).child("balance").setValue(balance - amount);
+                databaseReferenceSearch.child(userUsername).child("balance").setValue(userBalance + amount);
+                balance -= amount;
+                userBalance += amount;
+            } else Toast.makeText(MainActivity.this, "Your account has run out of money", Toast.LENGTH_LONG).show();
+            amount = 0;
+        }
     }
 
     //LoadProfile
@@ -767,6 +887,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //Image to Byte
     public byte[] ImageViewToByte(ImageView view){
         BitmapDrawable drawable = (BitmapDrawable) view.getDrawable();
         Bitmap bmp = drawable.getBitmap();
