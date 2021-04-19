@@ -5,7 +5,7 @@
 ___
 
 # PayE - The Social Payment
-## Môn Thực tập đồ án đa ngành
+## Môn Phát Triển Ứng Dụng Trên Thiết Bị Di Động
 
 Giáo viên hướng dẫn: ThS. Lưu Quang Huân
 
